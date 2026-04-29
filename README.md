@@ -80,16 +80,16 @@
 </div>
 
 <script>
-    const quizData = [
+    const quizData = [ 
 // --- GENERAL EDUCATION ---
 { 
     cat: "Gen Ed", 
-    q: "Who is the 'Father of the Philippine Constitution'?", 
+    <!-- q: "Who is the 'Father of the Philippine Constitution'?",
     a: ["A. Jose Laurel", "B. Claro M. Recto", "C. Sergio Osmena", "D. Manuel Quezon"], 
     c: 1, 
     rat: "Claro M. Recto presided over the 1934 Constitutional Convention and is the primary author of the 1935 Constitution."
         },
-       { 
+{ 
     cat: "Gen Ed", 
     q: "Which Filipino president is known for the 'Filipino First Policy'?", 
     a: ["A. Diosdado Macapagal", "B. Carlos P. Garcia", "C. Ramon Magsaysay", "D. Ferdinand Marcos"], 
@@ -1883,6 +1883,41 @@
         });
         startTimer();
     }
+    function checkAns(idx) {
+    if(answeredInThisTurn) return; 
+    answeredInThisTurn = true; 
+    clearInterval(timerInterval);
+
+    const correctIdx = quizData[current].c;
+    if(idx === correctIdx) {
+        userScore++; 
+        catScore++; // Add point to both total and category scores
+        document.getElementById(`opt-${idx}`).classList.add('correct');
+    } else {
+        document.getElementById(`opt-${idx}`).classList.add('wrong');
+        document.getElementById(`opt-${correctIdx}`).classList.add('correct');
+    }
+    function move(step) {
+    let nextIdx = current + step;
+    answeredInThisTurn = false;
+
+    // Check if the NEXT question is a different category
+    if (nextIdx < quizData.length && nextIdx >= 0) {
+        if (quizData[nextIdx].cat !== quizData[current].cat) {
+            showCategoryResults(); // Show intermediate score
+            return;
+        }
+    }
+
+    if (nextIdx >= quizData.length) {
+        showFinalResults();
+        return;
+    }
+    
+    current = nextIdx;
+    render();
+}
+
     <!-- Category Break Screen -->
 <div id="cat-screen" style="display:none; text-align:center; padding: 50px;">
     <h1 style="font-size: 4rem; color: var(--accent);">CATEGORY FINISHED!</h1>
@@ -1906,41 +1941,6 @@
         render();
     let catScore = 0; // Tracks score for the current category only
 
-function checkAns(idx) {
-    if(answeredInThisTurn) return; 
-    answeredInThisTurn = true; 
-    clearInterval(timerInterval);
-
-    const correctIdx = quizData[current].c;
-    if(idx === correctIdx) {
-        userScore++; 
-        catScore++; // Add point to both total and category scores
-        document.getElementById(`opt-${idx}`).classList.add('correct');
-    } else {
-        document.getElementById(`opt-${idx}`).classList.add('wrong');
-        document.getElementById(`opt-${correctIdx}`).classList.add('correct');
-    }
-}
-
-function move(step) {
-    let nextIdx = current + step;
-    answeredInThisTurn = false;
-
-    // Check if the NEXT question is a different category
-    if (nextIdx < quizData.length && nextIdx >= 0) {
-        if (quizData[nextIdx].cat !== quizData[current].cat) {
-            showCategoryResults(); // Show intermediate score
-            return;
-        }
-    }
-
-    if (nextIdx >= quizData.length) {
-        showFinalResults();
-        return;
-    }
-    
-    current = nextIdx;
-    render();
 }
 
 function showCategoryResults() {
