@@ -84,7 +84,7 @@
 // --- GENERAL EDUCATION ---
 { 
     cat: "Gen Ed", 
-    <!-- q: "Who is the 'Father of the Philippine Constitution'?",
+    q: "Who is the 'Father of the Philippine Constitution'?",
     a: ["A. Jose Laurel", "B. Claro M. Recto", "C. Sergio Osmena", "D. Manuel Quezon"], 
     c: 1, 
     rat: "Claro M. Recto presided over the 1934 Constitutional Convention and is the primary author of the 1935 Constitution."
