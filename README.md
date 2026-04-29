@@ -434,6 +434,7 @@
 }
 // --- PROFESSIONAL EDUCATION --- //
     cat: "Prof Ed", 
+ {
     q: "A teacher rewards students with 'stars' for good behavior. This is:", 
     a: ["A. Classical Conditioning", "B. Operant Conditioning", "C. Social Learning", "D. Insight Learning"], 
     c: 1, 
