@@ -432,9 +432,7 @@
     c: 2, 
     rat: "1/2 (or 2/4) + 1/4 = 3/4."
 }
-
-// --- PROFESSIONAL EDUCATION ---
-{ 
+// --- PROFESSIONAL EDUCATION --- //
     cat: "Prof Ed", 
     q: "A teacher rewards students with 'stars' for good behavior. This is:", 
     a: ["A. Classical Conditioning", "B. Operant Conditioning", "C. Social Learning", "D. Insight Learning"], 
